@@ -1,5 +1,5 @@
 WIDTH,HEIGHT = 1200,700
-from random import random
+import random
 
 import pygame
 from redlaser import Redlaser
@@ -15,17 +15,17 @@ class Bacteria(pygame.sprite.Sprite):
         self.direction = 1
         self.bacteriagroup = bacteriagroup
 
-def update(self):
-    self.rect.x += self.direction*self.velocity
-    if self.rect.right >= WIDTH or self.rect.left <= 0:
-        for bacteria in self.bacteria_group: 
-            bacteria.direction *= -1
-            bacteria.rect.y += 20
+    def update(self):
+        self.rect.x += self.direction*self.velocity
+        if self.rect.right >= WIDTH or self.rect.left <= 0:
+            for bacteria in self.bacteriagroup: 
+                bacteria.direction *= -1
+                bacteria.rect.y += 20
 
 
-    if random.randint(0, 1000) > 999 and len(self.laser_group) < 3:
+        if random.randint(0, 1000) > 999 and len(self.lasergroup) < 3:
 
-        self.fire()
+            self.fire()
 
-def fire(self):
-    Redlaser(self.rect.center, self.rect.bottom, self.laser_group)
+    def fire(self):
+        Redlaser(self.rect.centerx, self.rect.bottom, self.lasergroup)

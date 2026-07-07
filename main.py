@@ -42,17 +42,8 @@ for row in range(num_rows):
 
 
 
-screen.fill((0, 0, 0))
-score_text = font.render(f"Score: {nanobot.score}", True, "WHITE")
-score_rect = score_text.get_rect(centerx=WINDOW_WIDTH // 2, top=60)
 
-lives_text = font.render(f"Lives: {nanobot.lives}", True, "WHITE")
-lives_rect = lives_text.get_rect(topright=(WINDOW_WIDTH - 20, 70))
 
-screen.blit(score_text, score_rect)
-screen.blit(lives_text, lives_rect)
-pygame.draw.line(screen, "WHITE", (0,50), (WINDOW_WIDTH, 50), 4)
-pygame.draw.line(screen, "WHITE", (0, WINDOW_HEIGHT - 100), (WINDOW_WIDTH, WINDOW_HEIGHT - 100), 4)
 
 running = True
 while running:
@@ -65,7 +56,7 @@ while running:
             if event.key == pygame.K_UP:
                 nanobot.fire()
 
-    if pygame.sprite.groupcollide(redlasergroup,  bacteriagroup, True, True,):
+    if pygame.sprite.groupcollide(greenlasergroup,  bacteriagroup, True, True,):
         nanobot.score += 100
         bacteria_hit_sound.play()
     if pygame.sprite.spritecollide(nanobot, redlasergroup, True):
@@ -77,7 +68,7 @@ while running:
             defeat_text_rect = defeat_text.get_rect(center=(WINDOW_WIDTH // 2, WINDOW_HEIGHT // 2))
             breach_sound.play()
             gameover=True
-        if nanobot.score==4400:
+        if nanobot.score==4700:
             game_win=True
             gamewin_text=font.render("YOU WON!",True,"WHITE")
             gamewin_text_rect=gamewin_text.get_rect(center = (WINDOW_WIDTH // 2, WINDOW_HEIGHT // 2))
@@ -95,6 +86,17 @@ while running:
         pygame.display.update()
         pygame.time.delay(2000)
         running = False
+    screen.fill((0, 0, 0))
+    score_text = font.render(f"Score: {nanobot.score}", True, "WHITE")
+    score_rect = score_text.get_rect(centerx=WINDOW_WIDTH // 2, top=60)
+
+    lives_text = font.render(f"Lives: {nanobot.lives}", True, "WHITE")
+    lives_rect = lives_text.get_rect(topright=(WINDOW_WIDTH - 20, 70))
+    screen.blit(score_text, score_rect)
+    screen.blit(lives_text, lives_rect)
+    pygame.draw.line(screen, "WHITE", (0,50), (WINDOW_WIDTH, 50), 4)
+    pygame.draw.line(screen, "WHITE", (0, WINDOW_HEIGHT - 100), (WINDOW_WIDTH, WINDOW_HEIGHT - 100), 4)
+
 
     nanobot_group.update(event)
     nanobot_group.draw(screen)

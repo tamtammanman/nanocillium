@@ -12,7 +12,6 @@ class Nanobot(pygame.sprite.Sprite):
         self.velocity = 5
         self.lasergroup = lasergroup
         self.lives = 5
-        self.velocity = 8
         self.score = 0
     def update(self,event):
         """Update the player movement based on key press"""
